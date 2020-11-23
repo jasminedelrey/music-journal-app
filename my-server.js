@@ -72,7 +72,6 @@ app.get('/journal-entries/:vibe', getJournalByVibe)
 
 async function getJournalByDate(req,res) {
 	const dateInput = req.params.date;
-	$convert: { input: dateInput, to: "int" };
 	const query = {};
 	query["date"] = dateInput;
 
@@ -83,9 +82,25 @@ async function getJournalByDate(req,res) {
 	res.json(response);
 
 }
-app.get('/journal-entries/:date', getJournalByDate)
+app.get('/search-journal-entries/:date', getJournalByDate)
 
 
+
+async function addNewJournal(req, res) {
+
+	const newArtist = req.body.artist;
+	const newVibe = req.body.vibe;
+	const newDate = req.body.date;
+
+	const result = await collection.insertOne({
+		"artist" : newArtist,
+		"vibe" : newVibe,
+		"date" : newDate
+	});
+
+
+}
+app.post("/addjournal", jsonParser, addNewJournal);
 
 app.listen(5000, function(){
 	console.log("Server is running on port 5000.");
