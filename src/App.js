@@ -5,9 +5,9 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import All from './All';
 import Home from './Home';
 import Journal from './Journal';
+import All from './All';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         </Route>
 
         <Route path = "/journal-entries/:journal-entry">
-          <Journal/>
+          <All/>
         </Route>
 
         <Route path = "/">
@@ -34,3 +34,8 @@ function App() {
 }
 
 export default App;
+
+
+// <Route path = "/journal-entries/:journal-entry">
+// <Journal/>
+// </Route>

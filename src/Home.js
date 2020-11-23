@@ -13,7 +13,7 @@ class Home extends Component {
     }
     _clicked(){
         //console.log(this.inputRef.current.value);
-        window.location.href=`/results/${this.inputRef.current.value}`;
+        window.location.href=`/journal-entries`;
     }
 
     render() {

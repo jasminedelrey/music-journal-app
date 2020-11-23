@@ -1,51 +1,52 @@
 import React, { Component } from 'react';
 import './All.css';
 import {withRouter} from "react-router";
+import Journal from './Journal'
+import OneJournal from './OneJournal'
 
 class All extends Component {
 
     constructor() {
         super();
         this.state = {
-            villager: undefined 
+            journals: undefined 
         }
+        this._clicked = this._clicked.bind(this);
+        this.inputRef = React.createRef();
     }
 
     componentDidMount(){
-        let villagerName= this.props.match.params;
-        fetch(`https://localhost:3000/journal-entries`)
+        // let villagerName= this.props.match.params;
+        fetch(`http://localhost:5000/journal-entries`)
         .then(response => response.json())
         .then(result => {
             this.setState({
-                villager: result
+                journals: result
             })
+            console.log(result)
 
         })
     }
 
-
-    render(){
-        return(
-            <div>
-                {(this.state.villager !== undefined) ?
-                    (this.state.villager.length !== 0) ?
-                    <div className = "villager"> 
-                        <h1> {this.state.villager[0].name} </h1>
-                        <img src = {this.state.villager[0].image} alt={this.state.villager[0].name}/>
-                        <p> Hobby: {this.state.villager[0].hobby}</p>
-                    </div>
-                    :
-                    "Villager not found." 
-
-                :
-                ""
-                }
-
-            </div>
-        )
+    _clicked() {
+        window.location.href=`/journal-entries/:journal-entry`;
     }
 
+    render(){
 
-}
+        const journalComponent = this.state.journals.map(journal => {
+            return <OneJournal key = {journal.date}
+                            entry = {journal.entry}/>
+        })
+
+        return(
+            <div>
+            <h1> Hello World</h1>
+            <p> {journalComponent}</p>
+            </div>
+            )
+        }
+    }
+
 
 export default withRouter(All);

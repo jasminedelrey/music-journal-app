@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import './All.css';
+import All from './All';
+import './Journal.css';
 import {withRouter} from "react-router";
 
-class All extends Component {
+class Journal extends Component {
 
     constructor() {
         super();
         this.state = {
-            villager: undefined 
+            journal_entry: undefined 
         }
     }
 
     componentDidMount(){
-        let villagerName= this.props.match.params;
+        let journal_entry = this.props.match.params;
+        // let villagerName= this.props.match.params;
         //console.log(villagerName);
-        fetch(`https://localhost:3000/result/${villagerName.villager}`)
+        fetch(`http://localhost:5000/journal-entries/${villagerName.villager}`)
         .then(response => response.json())
         .then(result => {
             this.setState({
@@ -27,21 +29,9 @@ class All extends Component {
 
     render(){
         return(
-            <div>
-                {(this.state.villager !== undefined) ?
-                    (this.state.villager.length !== 0) ?
-                    <div className = "villager"> 
-                        <h1> {this.state.villager[0].name} </h1>
-                        <img src = {this.state.villager[0].image} alt={this.state.villager[0].name}/>
-                        <p> Hobby: {this.state.villager[0].hobby}</p>
-                    </div>
-                    :
-                    "Villager not found." 
-
-                :
-                ""
-                }
-
+            <div className = "journal-entry">
+                
+            
             </div>
         )
     }
@@ -49,4 +39,4 @@ class All extends Component {
 
 }
 
-export default withRouter(All);
+export default withRouter(Journal);
