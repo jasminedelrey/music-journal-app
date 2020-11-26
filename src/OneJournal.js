@@ -5,12 +5,19 @@ import {withRouter} from "react-router";
 
 class OneJournal extends Component {
 
+    _clicked() {
+
+    }
+
     render(){
         return(
             <div className = "journal-entry">
-                <p> {this.props.key} </p>
+                <p> {this.props.date} </p>
+                <p> {this.props.vibe} </p>
+                <p> {this.props.artist} </p>
+                <p> {this.props.song} </p>
                 <p> {this.props.entry} </p>
-                <button> See More </button>
+                <button onClick = {this._clicked()}> See More </button>
             
             </div>
         )

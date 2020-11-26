@@ -33,20 +33,29 @@ class All extends Component {
     }
 
     render(){
-
-        const journalComponent = this.state.journals.map(journal => {
-            return <OneJournal key = {journal.date}
-                            entry = {journal.entry}/>
+        let journalComponent = "";
+        if (this.state.journals !== undefined) {
+            journalComponent = (this.state.journals).map(journal => {
+                return <OneJournal  key = {journal.date}
+                                    date = {journal.date}
+                                    vibe = {journal.vibe}
+                                    artist = {journal.artist}
+                                    song = {journal.song}
+                                    entry = {journal.entry}
+                                    />
         })
+    }
 
         return(
             <div>
-            <h1> Hello World</h1>
-            <p> {journalComponent}</p>
+            <h1> Journal Entries</h1>
+                <p> {journalComponent}</p>
+                <button> Vibes </button>
+                <p> present vibes </p>
             </div>
             )
         }
     }
 
 
-export default withRouter(All);
+export default withRouter (All);

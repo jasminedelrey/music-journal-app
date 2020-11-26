@@ -16,7 +16,7 @@ class Journal extends Component {
         let journal_entry = this.props.match.params;
         // let villagerName= this.props.match.params;
         //console.log(villagerName);
-        fetch(`http://localhost:5000/journal-entries/${villagerName.villager}`)
+        fetch(`http://localhost:5000/journal-entries/${journal_entry}`)
         .then(response => response.json())
         .then(result => {
             this.setState({
@@ -31,7 +31,7 @@ class Journal extends Component {
         return(
             <div className = "journal-entry">
                 
-            
+
             </div>
         )
     }
