@@ -8,7 +8,7 @@ class Journal extends Component {
     constructor() {
         super();
         this.state = {
-            journal_entry: undefined 
+            vibes : []
         }
     }
 
@@ -20,7 +20,7 @@ class Journal extends Component {
         .then(response => response.json())
         .then(result => {
             this.setState({
-                villager: result
+                vibes: result.vibe
             })
 
         })
