@@ -3,6 +3,12 @@ import './Home.css';
 import {withRouter} from "react-router";
 import GoogleBtn from './GoogleBtn'
 import axios from 'axios';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import  { useState } from 'react';
+import DatePicker from 'react-date-picker';
+
+
 
 
 class Home extends Component {
@@ -36,17 +42,25 @@ class Home extends Component {
             .then(response => this.setState({ journalId: response.data._id }));
     
         window.location.href=`/journal-entries`;
+    
     }
+
+    
 
     render() {
         return(
             <div className = "Home">
-                <h1> Welcome to the home page.</h1>
-
+                <div className = "Header">
+                    <h1>Vibecheck</h1>
+                </div>
                 <div className = "search-container">
                     Song: <input type="text" ref={this.songRef}/>
                     Artist: <input type="text" ref={this.artistRef}/>
                     Entry: <textarea rows="4" cols="50" name="comment" form="usrform" ref={this.entryRef}/>
+
+                    <DatePicker
+                        
+                            />
 
                     <select name= "day" ref={this.dayRef}>
                         <option value="01">01</option>
@@ -78,14 +92,18 @@ class Home extends Component {
                         <span className= "vibe" alt= "worried"> 😞 </span>
                         <span className= "vibe" alt= "worried"> 🥺 </span>
                     </div>
-
+                    <button className = "go" onClick = {() => this._clicked()}>
+                    Submit
+                    </button>
+                </div>
+                
+                <div className = "googlebutton">
+                    <GoogleBtn/>
                 </div>
 
-                <GoogleBtn/>
-
-                <button className = "go" onClick = {() => this._clicked()}>
-                    Submit
-                </button>
+               
+                
+                
 
             </div>
         );
