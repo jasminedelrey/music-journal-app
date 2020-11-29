@@ -28,3 +28,13 @@
 .vibes {
     font-size: 50px;
 }
+
+.hidden {
+    display: none;
+    
+}
+
+.show {
+    background-color: cadetblue;
+}
+

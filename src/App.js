@@ -8,6 +8,7 @@ import {
 import Home from './Home';
 import Journal from './Journal';
 import All from './All';
+import Vibe from './Vibe'
 
 function App() {
   return (
@@ -15,17 +16,22 @@ function App() {
 
       <Switch>
 
-        <Route path = "/journal-entries">
+        <Route exact path = "/journal-entries">
           <All/>
         </Route>
 
-        <Route path = "/journal-entries/:journal-entry">
+        <Route exact path = "/journal-entries/:journal-entry">
           <All/>
         </Route>
 
-        <Route path = "/">
+        <Route exact path = "/">
           <Home/>
         </Route>
+
+        <Route exact path = "/journal-entries/vibes">
+          <Vibe/>
+        </Route>
+
 
       </Switch>
 
