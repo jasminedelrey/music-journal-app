@@ -30,6 +30,21 @@ app.use(cors());
 let database = null;
 let collection = null;
 
+
+// async function addNewCollection(req, res) {
+// 	await client.connect();
+
+// 	const collection_name = req.body.collection_name
+// 	collection = collection_name
+	
+// 	database = client.db("vibes-database");
+// 	collection = database.collection(collection);
+// 	console.log("In connectDB")
+
+
+// }
+// app.post("/addNewCollection", jsonParser, addNewCollection);
+
 async function connectDB() {
 	await client.connect();
 	database = client.db("vibes-database");
@@ -105,6 +120,7 @@ async function addNewJournal(req, res) {
 
 }
 app.post("/addNewJournal", jsonParser, addNewJournal);
+
 
 app.listen(5000, function(){
 	console.log("Server is running on port 5000.");

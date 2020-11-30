@@ -21,9 +21,8 @@ class OneVibe extends Component {
 
         return(
             <div className = "listed-vibes">
-                <h2> vibessss </h2>
-                
-                <p> {this.props.song}</p>
+            <p> HI </p>
+                <p> This is your match: {this.props.match}</p>
             
             </div>
         )

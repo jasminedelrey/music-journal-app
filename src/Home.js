@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css';
 import {withRouter} from "react-router";
-import GoogleBtn from './GoogleBtn'
 import axios from 'axios';
 
 
@@ -164,7 +163,6 @@ class Home extends Component {
                 </div>
 
 
-                <GoogleBtn/>
 
                 <button className = "go" onClick = {() => this._clicked()}>
                     Submit

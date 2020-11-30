@@ -11,21 +11,45 @@ class GoogleBtn extends Component {
 
     this.state = {
       isLogined: false,
-      accessToken: ''
+      accessToken: '',
+      userinfo : ''
     };
 
     this.login = this.login.bind(this);
     this.handleLoginFailure = this.handleLoginFailure.bind(this);
     this.logout = this.logout.bind(this);
     this.handleLogoutFailure = this.handleLogoutFailure.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
+  }
+
+  handleEmail(email){
+    this.setState({
+      userinfo : email
+    })
+    console.log("in handleEmail function" + this.state.userinfo)
   }
 
   login(response) {
+  
     console.log("HELLO")
-    if(response.accessToken){
+    let email = ''
+    this.props.userLogin(true);
+
+    if (response.accessToken){
+
+      fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${response.accessToken}`)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        email = result.email
+        this.handleEmail(email)
+
+      })
+      console.log(email)
+
       this.setState(state => ({
         isLogined: true,
-        accessToken: response.accessToken
+        accessToken: response.accessToken,
       })
       );
     }      
@@ -68,7 +92,7 @@ class GoogleBtn extends Component {
           responseType='code,token'
         />
       }
-      { this.state.accessToken ? <h5>Your Access Token: <br/><br/> { this.state.accessToken }</h5> : null }
+      {/* { this.state.accessToken ? <h5>Your Access Token: <br/><br/> { this.state.accessToken }</h5> : null } */}
 
     </div>
     )

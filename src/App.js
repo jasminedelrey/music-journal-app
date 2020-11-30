@@ -9,6 +9,7 @@ import Home from './Home';
 import Journal from './Journal';
 import All from './All';
 import Vibe from './Vibe'
+import Login from './Login';
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
         </Route>
 
         <Route exact path = "/">
+          <Login/>
+        </Route>
+
+        <Route exact path = "/home">
           <Home/>
         </Route>
 
@@ -40,8 +45,3 @@ function App() {
 }
 
 export default App;
-
-
-// <Route path = "/journal-entries/:journal-entry">
-// <Journal/>
-// </Route>
