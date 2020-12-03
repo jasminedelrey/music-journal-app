@@ -36,6 +36,10 @@ class All extends Component {
         window.location.href = `/journal-entries/vibes`;
     }
 
+    goBack() {
+        window.location.href = `/`;
+    }
+
 
     render(){
         let journalComponent = "";
@@ -56,6 +60,7 @@ class All extends Component {
             <h1> Journal Entries</h1>
                 <p> {journalComponent}</p>
                 <button onClick = {this.clickedVibes}> Vibes </button>
+                <button onClick = {this.goBack}> Add another entry</button>
                 <p> present vibes </p>
             </div>
             )

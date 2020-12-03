@@ -18,8 +18,8 @@ const emotions = {
     "defeated" : "😞",
     "please" : "🥺"
 }
+
 let mango = [];
-let selected_vibes = [];
 class Vibe extends Component {
 
     constructor() {
@@ -30,7 +30,8 @@ class Vibe extends Component {
             presentVibes : [],
             presentSongs : [],
             test :[],
-            hehe : []
+            hehe : [],
+            presentMatches : []
         }
         // this.selectedVibe = this.selectedVibe.bind(this);
     }
@@ -56,6 +57,10 @@ class Vibe extends Component {
 
     componentDidMount(){
 
+        let vibeMatches = {};
+        let selected_vibes = [];
+        let selectedSongs = []
+
         // let dropdown = document.getElementById('vibe-dropdown');
         // let buttons = document.getElementById('buttons');
         // dropdown.length = 0;
@@ -66,6 +71,7 @@ class Vibe extends Component {
 
 
         let p = [];
+        let objects = '';
         fetch(`http://localhost:5000/journal-entries`)
         .then(response => response.json())
         .then(result => {
@@ -89,53 +95,118 @@ class Vibe extends Component {
 
 
         for (let i= 0; i < p.length; i++) {
-            let option = document.createElement('option');
+            // let option = document.createElement('option');
             let button = document.createElement('button')
             button.innerHTML = emotions[p[i]]
             button.id = p[i]
             button.onclick = event => {
                 let selected_button = document.getElementById(event.target.id)
                 console.log(event.target.id)
+
                 let array =[]
+
                 let selection = event.target.id
+                console.log("selected vibes array" + selected_vibes)
                 if (selected_vibes.indexOf(event.target.id) === -1){
                     selected_button.classList.add("show")
                     selected_vibes.push(event.target.id)
-                }
-                else {
-                    for(let i= 0; i < selected_vibes.length; i++) {
-                        if(selected_vibes[i] === event.target.id) {
-                            selected_vibes.splice(i,1);
-                        }
-                    }
-        
-                    selected_button.classList.remove("show")
-                }
 
-                fetch(`http://localhost:5000/journal-entries/${selection}`)
+                    fetch(`http://localhost:5000/journal-entries/${selection}`)
                     .then(response => response.json())
                     .then(result => {
                         for(let i=0; i<result.length;i++) {
                             array.push(result[i].song + " by " + result[i].artist)
-
-                            if (selected_vibes.indexOf(selection)!== -1 && mango.indexOf(result[i].song + " by " + result[i].artist) === -1){
-                                mango.push(result[i].song + " by " + result[i].artist)
-                                console.log(mango)
+                            vibeMatches[selection] = array
+                            console.log(vibeMatches)
+                            let q = []
+                            console.log(Object.keys(vibeMatches))
+                            
+                            for(let i=0; i< Object.keys(vibeMatches).length; i++){
+                                
+                                if(Object.values(vibeMatches)[i] !== null){
+                                    q.push(Object.values(vibeMatches)[i])
+                                }
                             }
-                        //     else {
-                        //         for(let i= 0; i < mango.length; i++) {
-                        //             if (mango[i] === (result[i].song + " by " + result[i].artist)) {
-                        //                 selected_vibes.splice(i,1);
-                        //             }
-                        //     }
-                        // }
 
                         this.setState({
                             test : array,
-                            hehe : mango
+                            hehe : mango,
+                            presentMatches : q
                         })
+
+                        console.log("STATE FOR Q ARRAY " + this.state.presentMatches)
                     }
                 });
+
+                objects = Object.entries(vibeMatches)
+                    
+                for(let i= 0; i< objects; i++) {
+                    if(objects[i].value !== null) {
+                        selectedSongs.push(objects[i].value)
+                    }
+                }
+
+                // let q = []
+                //     console.log(Object.keys(vibeMatches))
+                    
+                //     for(let i=0; i< Object.keys(vibeMatches).length; i++){
+                //         if(Object.values(vibeMatches)[i] !== null){
+                //             q.push(Object.keys(vibeMatches)[i])
+                //         }
+                //     }
+                //     this.setState({
+                //         presentMatches : q
+                //     })
+
+
+                }
+                
+                
+                
+                else {
+                    for(let i= 0; i < selected_vibes.length; i++) {
+                        if(selected_vibes[i] === event.target.id) {
+                            selected_vibes.splice(i,1);
+                            
+                        }
+                    }
+                    console.log("YOU JUST DESELECTED" + selection)
+                    console.log(vibeMatches)
+                
+                    
+                    objects = Object.entries(vibeMatches)
+                    console.log("objects is " + objects)
+                    
+                    for(let i= 0; i< objects; i++) {
+                        if(objects[i].value !== null) {
+                            selectedSongs.push(objects[i].value)
+                        }
+                    }
+
+                    console.log("SELECTED SONGS " + selectedSongs);
+
+                    vibeMatches[selection] = null
+                    selected_button.classList.remove("show")
+
+                    let q = []
+                    console.log(Object.keys(vibeMatches))
+                    
+                    for(let i=0; i< Object.keys(vibeMatches).length; i++){
+                        if(Object.values(vibeMatches)[i] !== null){
+                            q.push(Object.values(vibeMatches)[i])
+                        }
+                    }
+
+                    console.log('Q ARRAY IS ' + q)
+
+                    this.setState({
+                        presentMatches : q
+                    })
+
+                    console.log("STATE FOR Q ARRAY " + this.state.presentMatches)
+
+                }
+
             }
             // option.text = p[i]
             // option.value = p[i]
@@ -145,15 +216,21 @@ class Vibe extends Component {
         }
 
             console.log(p)
+            console.log("PRESENT MATCHES STATE" + Object.keys(this.state.presentMatches))
 
         })
 
+
+    }
+
+    goBack(){
+        window.location.href = `/journal-entries`;
     }
 
 
 
     render(){
-        // let vibeComponent = ""
+        let vibeComponent = ""
         // if(this.state.test.length >0){
         //     for(let i=0; i<this.state.test.length; i++){
         //         vibeComponent = <OneVibe key = "test"
@@ -161,11 +238,26 @@ class Vibe extends Component {
         //                         />
         //     }
         // }
+        let final_array = [];
+        if(this.state.presentMatches.length > 0) {
+
+        
+        vibeComponent = this.state.presentMatches.map(e => {
+            if (final_array.indexOf(e) === -1) {
+                <OneVibe key= "key"
+                         match = {e}
+
+                />
+                // final_array.push(this.state.presentMatches[i]);
+            }
+        }) 
+        }
 
         return (
 
             <div>
             <h1> Here are your vibes</h1>
+            <p> {vibeComponent}</p>
             {/* <OneVibe key = "vibes"
                         vibes = {p}
             />
@@ -173,10 +265,9 @@ class Vibe extends Component {
                 {/* <p> present vibes +  {this.state.presentSongs[0]}</p>
                 <select onChange = {this.selectedVibe} id= "vibe-dropdown"></select> */}
                 <p> {this.state.test}</p>
+                <p> PRESENT MATCHES: {this.state.presentMatches}</p>
                 <p> this is mango {this.state.hehe}</p>
-                <div id="buttons">
-
-                </div>
+                <button onClick = {this.goBack}> Back </button>
 
             </div>
         )
