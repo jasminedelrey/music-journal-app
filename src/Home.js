@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 class Home extends Component {
 
-    constructor(){
+    constructor(props){
         super();
         this.songRef = React.createRef();
         this.artistRef = React.createRef();
@@ -32,17 +32,25 @@ class Home extends Component {
             year_selection : "",
             date_selection : "",
             emoji_vibe: [],
-            _id : ""
+            _id : "",
+            date: new Date()
         }
         this._clicked = this._clicked.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
         }
 
     componentDidMount(){
         console.log(uuidv4());
     }
     
+    handleDateChange(date){
+        this.setState({
+            date: date
+        })
+    }
     
     _clicked(){
         //console.log(this.inputRef.current.value);
@@ -61,6 +69,11 @@ class Home extends Component {
         window.location.href=`/journal-entries`;
     
     }
+
+    onFormSubmit(e) {
+        e.preventDefault();
+        console.log(this.state.date)
+      }
 
     handleClick(event) {
         let vibe_list = this.state.emoji_vibe;
@@ -135,6 +148,8 @@ class Home extends Component {
                     Entry: <textarea rows="4" cols="50" name="comment" form="usrform" ref={this.entryRef}/>
 
                     <DatePicker
+                        selected={ this.state.date }
+                        onChange={ this.handleChange }
                          />
 
                     <select id = "day" ref={this.dayRef} onChange = {this.handleOnChange}>
