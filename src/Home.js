@@ -6,11 +6,14 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import  { useState } from 'react';
 import DatePicker from 'react-date-picker';
+import GoogleBtn from './GoogleBtn'
+import { v4 as uuidv4 } from 'uuid';
 
 
 
 
 class Home extends Component {
+
     constructor(){
         super();
         this.songRef = React.createRef();
@@ -35,11 +38,17 @@ class Home extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
         }
+
+    componentDidMount(){
+        console.log(uuidv4());
+    }
+    
+    
     _clicked(){
         //console.log(this.inputRef.current.value);
         console.log(this.artistRef.current.value);
         console.log(this.songRef.current.value);
-        const new_journal_entry = { _id: "aioenfapwinefapisdfsdf", 
+        const new_journal_entry = { _id: uuidv4(), 
                                     date: this.state.month_selection + "-" + this.state.day_selection + "-" + this.state.year_selection,
                                     vibe: this.state.emoji_vibe,
                                     artist: this.artistRef.current.value,
@@ -124,6 +133,9 @@ class Home extends Component {
                     Song: <input type="text" ref={this.songRef}/>
                     Artist: <input type="text" ref={this.artistRef}/>
                     Entry: <textarea rows="4" cols="50" name="comment" form="usrform" ref={this.entryRef}/>
+
+                    <DatePicker
+                         />
 
                     <select id = "day" ref={this.dayRef} onChange = {this.handleOnChange}>
                         <option value="day-default">day</option>

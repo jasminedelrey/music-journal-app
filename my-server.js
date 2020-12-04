@@ -93,6 +93,20 @@ async function getJournalByDate(req,res) {
 }
 app.get('/search-journal-entries/:date', getJournalByDate)
 
+async function getJournalByID(req,res) {
+	const idInput = req.params.id;
+	const query = {};
+	query["_id"] = idInput;
+
+	let journalsCursor = await collection.find(query);
+	let journals = await journalsCursor.toArray();
+
+	const response = journals;
+	res.json(response);
+
+}
+app.get('/search-journal-entries/:id', getJournalByID)
+
 
 
 async function addNewJournal(req, res) {
