@@ -56,6 +56,8 @@ class All extends Component {
         if (this.state.journals !== undefined) {
             journalComponent = (this.state.journals).map(journal => {
                 return <OneJournal  key = {journal._id}
+                                    email = {this.state.userInfo}
+                                    userid = {journal._id}
                                     date = {journal.date}
                                     vibe = {journal.vibe}
                                     artist = {journal.artist}

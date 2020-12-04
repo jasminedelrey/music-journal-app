@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-import { useState } from 'react';
 import './Home.css';
 import {withRouter} from "react-router";
 import axios from 'axios';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import  { useState } from 'react';
-import DatePicker from 'react-date-picker';
 import GoogleBtn from './GoogleBtn'
 import { v4 as uuidv4 } from 'uuid';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-
-
-
 
 class Home extends Component {
 
@@ -52,11 +42,6 @@ class Home extends Component {
 
         console.log("user info state is: " + this.state.userInfo)
         }
-
-
-    componentDidMount(){
-        console.log(uuidv4());
-    }
     
     
     _clicked(){
@@ -64,9 +49,8 @@ class Home extends Component {
         console.log(this.artistRef.current.value);
         console.log(this.songRef.current.value);
         console.log(this.state.userInfo)
-        const new_journal_entry = { _id: "JasminesTESTID", 
-                                    user_email: this.state.userInfo,
         const new_journal_entry = { _id: uuidv4(), 
+                                    user_email: this.state.userInfo,
                                     date: this.state.month_selection + "-" + this.state.day_selection + "-" + this.state.year_selection,
                                     vibe: this.state.emoji_vibe,
                                     artist: this.artistRef.current.value,
@@ -133,24 +117,12 @@ class Home extends Component {
             })
 
         }
-        // if (this.state.month_selection !== "" && this.state.day_selection !== "" && this.state.year_selection !== "") {
-        //         this.setState({
-        //             _id : date
-
-        //         })
         
     }
 
 
 
     render() {
-
-        // const Example = () => {
-        //     const [startDate, setStartDate] = useState(new Date());
-        //     return (
-        //       <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-        //     );
-        //   };
 
         return(
             <div className = "Home">
@@ -162,8 +134,7 @@ class Home extends Component {
                     Artist: <input type="text" ref={this.artistRef}/>
                     Entry: <textarea rows="4" cols="50" name="comment" form="usrform" ref={this.entryRef}/>
 
-                    <DatePicker
-                         />
+                   
 
                     <select id = "day" ref={this.dayRef} onChange = {this.handleOnChange}>
                         <option value="day-default">day</option>

@@ -15,24 +15,19 @@ class OneJournal extends Component {
     }
 
     _clicked(event) {
-        console.log(event.target.id)
-        this.setState ({
-            selection: event.target.id
-        })
-        console.log("hi im clicked!!");
-        console.log(this.state.selection);
-        //window.location.href = `/journal-entries/${this.state.selection}`;
+        window.location.href = `/selectedjournal/${this.props.email}/${event.target.id}`;
     }
 
     render(){
         return(
             <div className = "journal-entry">
+                <p>{this.props.userid}</p>
                 <p> {this.props.date} </p>
                 <p> {this.props.vibe} </p>
                 <p> {this.props.artist} </p>
                 <p> {this.props.song} </p>
                 <p> {this.props.entry} </p>
-                <button onClick = {this._clicked} id = {this.props.id}> See More </button>
+                <button onClick = {this._clicked} id = {this.props.userid}> See More </button>
             
             </div>
         )

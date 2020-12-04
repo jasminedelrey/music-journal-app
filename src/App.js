@@ -33,7 +33,7 @@ function App() {
           <Vibe/>
         </Route>
 
-        <Route exact path = "/journal-entries/:single_entry">
+        <Route exact path = "/selectedjournal/:useremail/:single_entry">
           <Journal/>
         </Route>
 
