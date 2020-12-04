@@ -8,25 +8,22 @@ class Login extends Component {
     constructor() {
         super();
         this.state= { 
-            loggedIn : false
+            loggedIn : false,
+            userInfo : ""
         }
         this.userLoggedIn = this.userLoggedIn.bind(this);
+        this._clickedNewEntry = this._clickedNewEntry.bind(this);
+        this.clickedJournals = this.clickedJournals.bind(this);
     }
 
-    _clickedNewEntry() {
-        window.location.href = `http://localhost:3000/home`;
-    }
+    userLoggedIn(email) {
+        console.log("email is" + email);
+        let userEmail = email;
 
-   clickedJournals(){
-        window.location.href=`http://localhost:3000/journal-entries`;
-    }
-
-    userLoggedIn(boolean) {
-        console.log("boolean is" + boolean);
-
-        if (boolean === true) {
+        if (email) {
             this.setState({
-                loggedIn : true
+                loggedIn : true,
+                userInfo : userEmail
             })
         }
 
@@ -37,6 +34,26 @@ class Login extends Component {
         }
 
         console.log("the logged in state is: " + this.state.loggedIn)
+        console.log("the email state is: " + this.state.userEmail)
+    }
+
+    _clickedNewEntry() {
+        if (this.state.userInfo === undefined){
+            console.log("Not reached.")
+        }
+
+        else{
+            window.location.href = `/home/${this.state.userInfo}`;
+        }
+    }
+
+   clickedJournals(){
+    if(this.state.userInfo === undefined){
+        console.log("Not reached.")
+    }
+    else{
+        window.location.href=`/journal-entries/${this.state.userInfo}`;
+    }
     }
 
     render(){
@@ -46,7 +63,9 @@ class Login extends Component {
 
 
                 {this.state.loggedIn ? <div className="login-buttons"> <button onClick = {this.clickedJournals}> Go to your journals </button> <br/>
-                <button onClick = {this._clickedNewEntry}> Add a new entry </button>  </div>: <p> Please Log in</p>}
+                <button onClick = {this._clickedNewEntry}> Add a new entry </button>  </div>
+                
+                : <p> Please Log in</p>}
 
                 <GoogleBtn
                     userLogin = {this.userLoggedIn}

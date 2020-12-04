@@ -54,35 +54,40 @@ async function connectDB() {
 
 connectDB();
 
-async function getAllJournals(req, res) {
-	let journalsCursor = await collection.find();
+async function getAllJournalsByUser(req, res) {
+	const userInfo = req.params.user_email
+	const query = {user_email:userInfo}
+
+	let journalsCursor = await collection.find(query);
 	let journals = await journalsCursor.toArray();
 	const response = journals;
 	res.json(response);
 	console.log("in get all journals");
 }
-app.get('/journal-entries', getAllJournals)
+app.get('/journal-entries/:user_email', getAllJournalsByUser)
 
 
 //localhost:5000/journal-entries/:vibe
 //localhost:5000/journal-entries/sad
-async function getJournalByVibe(req,res) {
+async function getJournalByUserAndVibe(req,res) {
 	const vibeCategory = req.params.vibe.toLowerCase(); 
+	const userInfo = req.params.user_email;
 
 
-	const query = {vibe:vibeCategory};
+	const query = {vibe:vibeCategory,
+				   user_email:userInfo};
 	let journalsCursor = await collection.find(query);
 	let journals = await journalsCursor.toArray();
 
 	const response = journals;
 	res.json(response);
 }
-app.get('/journal-entries/:vibe', getJournalByVibe)
+app.get('/journal-entries/:user_email/:vibe', getJournalByUserAndVibe)
 
-async function getJournalByDate(req,res) {
-	const dateInput = req.params.date;
+async function getJournalById(req,res) {
+	const idInput = req.params.id;
 	const query = {};
-	query["date"] = dateInput;
+	query["_id"] = idInput;
 
 	let journalsCursor = await collection.find(query);
 	let journals = await journalsCursor.toArray();
@@ -91,7 +96,7 @@ async function getJournalByDate(req,res) {
 	res.json(response);
 
 }
-app.get('/search-journal-entries/:date', getJournalByDate)
+app.get('/search-journal-entries/:id', getJournalById)
 
 
 
@@ -103,9 +108,11 @@ async function addNewJournal(req, res) {
 	const newDate = req.body.date;
 	const newEntry = req.body.entry;
 	const newSong = req.body.song;
+	const userEmail = req.body.user_email;
 
 	const result = await collection.insertOne({
 		"_id" : newId,
+		"user_email": userEmail,
 		"artist" : newArtist,
 		"vibe" : newVibe,
 		"date" : newDate,
@@ -120,6 +127,23 @@ async function addNewJournal(req, res) {
 
 }
 app.post("/addNewJournal", jsonParser, addNewJournal);
+
+// async function addNewUser(req, res) {
+
+// 	const newUser = req.body.email;
+
+// 	const result = await collection.insertOne({
+
+// 		"userEmail" : newUser,
+
+// 	});
+
+// 	const response = result;
+// 	res.json(response);
+
+
+// }
+// app.post("/addNewUser", jsonParser, addNewJournal);
 
 
 app.listen(5000, function(){

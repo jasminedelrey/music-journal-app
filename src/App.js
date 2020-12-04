@@ -17,11 +17,7 @@ function App() {
 
       <Switch>
 
-        <Route exact path = "/journal-entries">
-          <All/>
-        </Route>
-
-        <Route exact path = "/journal-entries/:journal-entry">
+        <Route exact path = "/journal-entries/:useremail">
           <All/>
         </Route>
 
@@ -29,11 +25,11 @@ function App() {
           <Login/>
         </Route>
 
-        <Route exact path = "/home">
+        <Route exact path = "/home/:useremail">
           <Home/>
         </Route>
 
-        <Route exact path = "/journal-entries/vibes">
+        <Route exact path = "/journal-entries/vibes/:useremail">
           <Vibe/>
         </Route>
 

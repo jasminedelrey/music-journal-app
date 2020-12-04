@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 import './Home.css';
 import {withRouter} from "react-router";
 import axios from 'axios';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import  { useState } from 'react';
 import DatePicker from 'react-date-picker';
-
-
-
+import GoogleBtn from './GoogleBtn';
 
 class Home extends Component {
     constructor(){
@@ -29,17 +25,31 @@ class Home extends Component {
             year_selection : "",
             date_selection : "",
             emoji_vibe: [],
-            _id : ""
+            _id : "",
+            userInfo : ""
         }
         this._clicked = this._clicked.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
         }
+
+    componentDidMount(){
+        const {useremail} = this.props.match.params;
+        console.log(useremail)
+        this.setState({
+            userInfo: useremail
+        })
+
+        console.log("user info state is: " + this.state.userInfo)
+        }
+
     _clicked(){
         //console.log(this.inputRef.current.value);
         console.log(this.artistRef.current.value);
         console.log(this.songRef.current.value);
-        const new_journal_entry = { _id: "aioenfapwinefapisdfsdf", 
+        console.log(this.state.userInfo)
+        const new_journal_entry = { _id: "JasminesTESTID", 
+                                    user_email: this.state.userInfo,
                                     date: this.state.month_selection + "-" + this.state.day_selection + "-" + this.state.year_selection,
                                     vibe: this.state.emoji_vibe,
                                     artist: this.artistRef.current.value,
@@ -51,6 +61,7 @@ class Home extends Component {
     
         window.location.href=`/journal-entries`;
     
+        // window.location.href=`/journal-entries`;
     }
 
     handleClick(event) {
@@ -114,7 +125,17 @@ class Home extends Component {
         
     }
 
+
+
     render() {
+
+        // const Example = () => {
+        //     const [startDate, setStartDate] = useState(new Date());
+        //     return (
+        //       <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+        //     );
+        //   };
+
         return(
             <div className = "Home">
                 <div className = "Header">
@@ -175,7 +196,6 @@ class Home extends Component {
                 <div className = "googlebutton">
                     <GoogleBtn/>
                 </div>
-
 
 
                 <button className = "go" onClick = {() => this._clicked()}>
