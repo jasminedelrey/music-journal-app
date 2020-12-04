@@ -1,3 +1,30 @@
+.Home .Header{
+    background-color: rgb(100, 100, 189);
+    padding:1%;
+
+}
+
+.Home .search-container{
+    background-color: rgb(240, 240, 240);
+    margin-top: 20px;
+    padding-bottom: 40px;
+    padding: 5%
+    
+}
+
+.Home .googlebutton{
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.Home .Header h1{
+    color: white;
+}
+
+
+
 .vibes {
     font-size: 50px;
 }
