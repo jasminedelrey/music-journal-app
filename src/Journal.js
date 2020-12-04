@@ -3,34 +3,62 @@ import All from './All';
 import './Journal.css';
 import {withRouter} from "react-router";
 
+
 class Journal extends Component {
 
     constructor() {
         super();
         this.state = {
-            vibes : []
+            date : "",
+            artist: "",
+            song: "",
+            entry: "",
+            vibes : [],
+            journal: undefined
         }
+        this._clicked = this._clicked.bind(this);
     }
 
     componentDidMount(){
-        let journal_entry = this.props.match.params;
-        // let villagerName= this.props.match.params;
-        //console.log(villagerName);
-        fetch(`http://localhost:5000/journal-entries/${journal_entry}`)
+        const single_entry = this.props.match.params.single_entry;
+        console.log(single_entry)
+        fetch(`http://localhost:5000/search-journal-entries/${single_entry}`)
         .then(response => response.json())
         .then(result => {
+            console.log(result);
             this.setState({
-                vibes: result.vibe
+                journal: result
             })
 
         })
     }
 
+    _clicked() {
+        const useremail = this.props.match.params.useremail;
+        window.location.href = `/journal-entries/${useremail}`;
+    }
 
     render(){
+        let entry, date, artist, song = ''
+        if(this.state.journal !== undefined) {
+            entry = this.state.journal[0].entry
+            date = this.state.journal[0].date
+            artist = this.state.journal[0].artist
+            song = this.state.journal[0].song
+
+        }
+        else {
+            console.log("not here")
+        }
         return(
             <div className = "journal-entry">
-                
+
+                <button onClick = {this._clicked}> Back </button>
+
+                <p> {entry}</p>
+                <p> {date}</p>
+                <p> {artist}</p>
+                <p> {song}</p>
 
             </div>
         )

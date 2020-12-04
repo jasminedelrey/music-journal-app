@@ -3,6 +3,7 @@ import './All.css';
 import {withRouter} from "react-router";
 import Journal from './Journal'
 import OneJournal from './OneJournal'
+import { v4 as uuidv4 } from 'uuid';
 
 class All extends Component {
 
@@ -54,7 +55,9 @@ class All extends Component {
         let journalComponent = "";
         if (this.state.journals !== undefined) {
             journalComponent = (this.state.journals).map(journal => {
-                return <OneJournal  key = {journal.date}
+                return <OneJournal  key = {journal._id}
+                                    email = {this.state.userInfo}
+                                    userid = {journal._id}
                                     date = {journal.date}
                                     vibe = {journal.vibe}
                                     artist = {journal.artist}
