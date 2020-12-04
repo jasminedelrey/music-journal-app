@@ -9,15 +9,24 @@ class All extends Component {
     constructor() {
         super();
         this.state = {
-            journals: undefined 
+            journals: undefined,
+            userInfo: ''
         }
         this._clicked = this._clicked.bind(this);
         this.inputRef = React.createRef();
+        this.clickedVibes = this.clickedVibes.bind(this);
     }
 
     componentDidMount(){
-        // let villagerName= this.props.match.params;
-        fetch(`http://localhost:5000/journal-entries`)
+        const {useremail} = this.props.match.params;
+        // console.log(useremail)
+
+        this.setState({
+            userInfo:useremail
+        })
+        console.log("state of userinfo" + useremail)
+
+        fetch(`http://localhost:5000/journal-entries/${useremail}`)
         .then(response => response.json())
         .then(result => {
             this.setState({
@@ -33,7 +42,7 @@ class All extends Component {
     }
 
     clickedVibes() {
-        window.location.href = `/journal-entries/vibes`;
+        window.location.href = `/journal-entries/vibes/${this.state.userInfo}`;
     }
 
     goBack() {

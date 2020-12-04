@@ -31,32 +31,20 @@ class Vibe extends Component {
             presentSongs : [],
             test :[],
             hehe : [],
-            presentMatches : []
+            presentMatches : [],
+            userInfo: ''
         }
         // this.selectedVibe = this.selectedVibe.bind(this);
     }
 
-//     selectedVibe(event){
-//         let array =[]
-//         console.log(event.target.value)
-//         let selection = event.target.value
-//         fetch(`http://localhost:5000/journal-entries/${selection}`)
-//             .then(response => response.json())
-//             .then(result => {
-//                 for(let i=0; i<result.length;i++) {
-//                     array.push(result[i].song + " by " + result[i].artist)
-//                 }
-
-//                 this.setState({
-//                     presentSongs : array
-//                 })
-//             });
-//             console.log(array)
-//         console.log(this.state.presentSongs)
 // }
 
     componentDidMount(){
-
+        const {useremail} = this.props.match.params;
+        console.log(useremail)
+        this.setState({
+            userInfo:useremail
+        })
         let vibeMatches = {};
         let selected_vibes = [];
         let selectedSongs = []
@@ -72,7 +60,7 @@ class Vibe extends Component {
 
         let p = [];
         let objects = '';
-        fetch(`http://localhost:5000/journal-entries`)
+        fetch(`http://localhost:5000/journal-entries/${useremail}`)
         .then(response => response.json())
         .then(result => {
 
@@ -99,7 +87,7 @@ class Vibe extends Component {
             let button = document.createElement('button')
             button.innerHTML = emotions[p[i]]
             button.id = p[i]
-            button.onclick = event => {
+            button.onclick = (event => {
                 let selected_button = document.getElementById(event.target.id)
                 console.log(event.target.id)
 
@@ -111,7 +99,7 @@ class Vibe extends Component {
                     selected_button.classList.add("show")
                     selected_vibes.push(event.target.id)
 
-                    fetch(`http://localhost:5000/journal-entries/${selection}`)
+                    fetch(`http://localhost:5000/journal-entries/${this.state.userInfo}/${selection}`)
                     .then(response => response.json())
                     .then(result => {
                         for(let i=0; i<result.length;i++) {
@@ -145,20 +133,6 @@ class Vibe extends Component {
                         selectedSongs.push(objects[i].value)
                     }
                 }
-
-                // let q = []
-                //     console.log(Object.keys(vibeMatches))
-                    
-                //     for(let i=0; i< Object.keys(vibeMatches).length; i++){
-                //         if(Object.values(vibeMatches)[i] !== null){
-                //             q.push(Object.keys(vibeMatches)[i])
-                //         }
-                //     }
-                //     this.setState({
-                //         presentMatches : q
-                //     })
-
-
                 }
                 
                 
@@ -207,7 +181,7 @@ class Vibe extends Component {
 
                 }
 
-            }
+            }).bind(this);
             // option.text = p[i]
             // option.value = p[i]
             // option.id = p[i]

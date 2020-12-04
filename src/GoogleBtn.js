@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import axios from 'axios';
 
 
 const CLIENT_ID = '734371553562-rauojrm46mbmdggirl1d0e4cqtst4fdj.apps.googleusercontent.com';
@@ -23,9 +24,17 @@ class GoogleBtn extends Component {
   }
 
   handleEmail(email){
-    this.setState({
+    // const new_user= { 
+    //                   userEmail: email
+    //                 };
+    //     axios.post('http://localhost:5000/addNewUser', new_user)
+    //         .then(response => this.setState({ userinfo: email}));
+    
+      this.setState({
       userinfo : email
     })
+
+    this.props.userLogin(email);
     console.log("in handleEmail function" + this.state.userinfo)
   }
 
@@ -33,7 +42,6 @@ class GoogleBtn extends Component {
   
     console.log("HELLO")
     let email = ''
-    this.props.userLogin(true);
 
     if (response.accessToken){
 
