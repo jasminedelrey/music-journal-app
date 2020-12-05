@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 import {withRouter} from "react-router";
-import GoogleBtn from './GoogleBtn'
+import GoogleBtn from '../GoogleBtn/GoogleBtn'
 
 class Login extends Component {
 

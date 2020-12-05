@@ -5,11 +5,11 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import Home from './Home';
-import Journal from './Journal';
-import All from './All';
-import Vibe from './Vibe'
-import Login from './Login';
+import Home from './Components/Home/Home';
+import Journal from './Components/Journal/Journal';
+import All from './Components/All/All';
+import Vibe from './Components/Vibe/Vibe'
+import Login from './Components/Login/Login';
 
 function App() {
   return (
