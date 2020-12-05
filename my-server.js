@@ -128,22 +128,6 @@ async function addNewJournal(req, res) {
 }
 app.post("/addNewJournal", jsonParser, addNewJournal);
 
-// async function addNewUser(req, res) {
-
-// 	const newUser = req.body.email;
-
-// 	const result = await collection.insertOne({
-
-// 		"userEmail" : newUser,
-
-// 	});
-
-// 	const response = result;
-// 	res.json(response);
-
-
-// }
-// app.post("/addNewUser", jsonParser, addNewJournal);
 
 
 app.listen(5000, function(){

@@ -11,7 +11,8 @@ class All extends Component {
         super();
         this.state = {
             journals: undefined,
-            userInfo: ''
+            userInfo: '',
+            journal_length : 0
         }
         this._clicked = this._clicked.bind(this);
         this.inputRef = React.createRef();
@@ -30,8 +31,10 @@ class All extends Component {
         fetch(`http://localhost:5000/journal-entries/${useremail}`)
         .then(response => response.json())
         .then(result => {
+            let length = result.length
             this.setState({
-                journals: result
+                journals: result,
+                journal_length : length
             })
             console.log(result)
 
@@ -68,12 +71,17 @@ class All extends Component {
     }
 
         return(
-            <div>
-            <h1> Journal Entries</h1>
+            <div className= "all-entries">
+            <h1 id="title"> Journal Entries</h1>
+            <div id="all-buttons">
+                <button id="vibe-button" onClick = {this.clickedVibes}> Vibes </button>
+                <button id="entry-button" onClick = {this.goBack}> Add entry ✏️</button>
+                </div>
+            <div id="journal-component">
+            
                 <p> {journalComponent}</p>
-                <button onClick = {this.clickedVibes}> Vibes </button>
-                <button onClick = {this.goBack}> Add another entry</button>
-                <p> present vibes </p>
+                </div>
+               <p id="no-journal"> {this.state.journal_length === 0 ? "It looks like you have no journal entries. Go ahead and add an entry!" : ""} </p>
             </div>
             )
         }

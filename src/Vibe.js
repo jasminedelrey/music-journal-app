@@ -20,6 +20,7 @@ const emotions = {
 }
 
 let mango = [];
+let useremail = '';
 class Vibe extends Component {
 
     constructor() {
@@ -35,6 +36,7 @@ class Vibe extends Component {
             userInfo: ''
         }
         // this.selectedVibe = this.selectedVibe.bind(this);
+        this.goBack = this.goBack.bind(this);
     }
 
 // }
@@ -198,20 +200,13 @@ class Vibe extends Component {
     }
 
     goBack(){
-        window.location.href = `/journal-entries`;
+        window.location.href = `/journal-entries/${this.state.userInfo}`;
     }
 
 
 
     render(){
         let vibeComponent = ""
-        // if(this.state.test.length >0){
-        //     for(let i=0; i<this.state.test.length; i++){
-        //         vibeComponent = <OneVibe key = "test"
-        //                                  song = {this.state.test[i]}
-        //                         />
-        //     }
-        // }
         let final_array = [];
         if(this.state.presentMatches.length > 0) {
 
@@ -222,7 +217,6 @@ class Vibe extends Component {
                          match = {e}
 
                 />
-                // final_array.push(this.state.presentMatches[i]);
             }
         }) 
         }
@@ -232,12 +226,6 @@ class Vibe extends Component {
             <div>
             <h1> Here are your vibes</h1>
             <p> {vibeComponent}</p>
-            {/* <OneVibe key = "vibes"
-                        vibes = {p}
-            />
-                <button onClick = {this.clickedVibes}> Vibes </button> */}
-                {/* <p> present vibes +  {this.state.presentSongs[0]}</p>
-                <select onChange = {this.selectedVibe} id= "vibe-dropdown"></select> */}
                 <p> {this.state.test}</p>
                 <p> PRESENT MATCHES: {this.state.presentMatches}</p>
                 <p> this is mango {this.state.hehe}</p>

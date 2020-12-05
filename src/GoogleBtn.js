@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import axios from 'axios';
+import './GoogleBtn.css';
 
 
 const CLIENT_ID = '734371553562-rauojrm46mbmdggirl1d0e4cqtst4fdj.apps.googleusercontent.com';
@@ -69,6 +70,7 @@ class GoogleBtn extends Component {
       isLogined: false,
       accessToken: ''
     }));
+    this.props.handlelogout(false);
 
     console.log("ACCESS TOKEN IN LOGOUT" + this.state.accessToken);
   }
@@ -83,11 +85,14 @@ class GoogleBtn extends Component {
 
   render() {
     return (
-    <div>
+    <div className = "googleButton">
       { this.state.isLogined ?
         <GoogleLogout
           clientId={CLIENT_ID}
           buttonText='Logout'
+          theme = 'dark'
+          style = {{width:1000,
+                    height: 200}}
           onLogoutSuccess={ this.logout }
           onFailure={ this.handleLogoutFailure }
         >
@@ -95,6 +100,9 @@ class GoogleBtn extends Component {
           clientId={CLIENT_ID}
           buttonText='Login'
           onSuccess={ this.login }
+          style = {{width:1000,
+                    height: 200}}
+          theme = 'dark'
           onFailure={ this.handleLoginFailure }
           cookiePolicy={ 'single_host_origin' }
           responseType='code,token'
