@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,100&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,100&display=swap');
 
 body{
     background-color: rgb(100, 100, 189);  
@@ -48,4 +48,72 @@ p{
     margin-top: 5%;
     
     
-}
+} */
+@import url('https://fonts.googleapis.com/css2?family=Manjari&family=Sonsie+One&display=swap');
+  
+  body {
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+  }
+  
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+
+  .pre-login {
+    float:none;
+    position:static;
+    display:block;
+    margin:auto;
+    width:max-content;
+  }
+
+  .entry-button, .journal-button {
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family: 'Manjari', sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    width: 100%;
+    background-color: transparent;
+    font-size: xx-large;
+
+  }
+
+  .entry-button:hover, .journal-button:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+    cursor: pointer;
+  }
+  .login {
+      text-align: left;
+
+  }
+
+  #intro1 {
+      font-size: 100px;
+      font-family: 'Sonsie One', cursive;
+      font-weight: bold;
+  }
+
+  #intro2 {
+    font-family: 'Manjari', sans-serif;
+    text-align: center;
+    font-size: 50px;
+  }

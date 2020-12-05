@@ -14,6 +14,7 @@ class Login extends Component {
         this.userLoggedIn = this.userLoggedIn.bind(this);
         this._clickedNewEntry = this._clickedNewEntry.bind(this);
         this.clickedJournals = this.clickedJournals.bind(this);
+        this.handleLogOut = this.handleLogOut.bind(this);
     }
 
     userLoggedIn(email) {
@@ -35,6 +36,12 @@ class Login extends Component {
 
         console.log("the logged in state is: " + this.state.loggedIn)
         console.log("the email state is: " + this.state.userEmail)
+    }
+
+    handleLogOut(boolean) {
+        this.setState({
+            loggedIn : boolean
+        })
     }
 
     _clickedNewEntry() {
@@ -59,21 +66,19 @@ class Login extends Component {
     render(){
         return(
             <div className = "login">
+                <h1 id= "intro1"> VibeCheck</h1>
+                <h2 id= "intro2">  A music journal for your vibes.</h2>
+
+
+                {this.state.loggedIn ? <div className="login-buttons"> <button className = "journal-button" onClick = {this.clickedJournals}> Go to your journals 📔 </button> <br/>
+                <button className = "entry-button" onClick = {this._clickedNewEntry}> Add a new entry ✏️ </button>  </div>
                 
-                <h1> Welcome to Vibecheck </h1>
-                
-                <div clasName = "login-prompt">
-                    {this.state.loggedIn ? <div className="login-buttons"> <button onClick = {this.clickedJournals}> Go to your journals </button> <br/>
-                    <button onClick = {this._clickedNewEntry}> Add a new entry </button>  </div>
-                
-                    : <p> Please Log in</p>}
-                
-                    <div className = "GoogleBtn">
-                        <GoogleBtn
-                        userLogin = {this.userLoggedIn}
-                        />
-                    </div>
-                </div>
+                : <p className= "pre-login"> Please Log in to start</p>}
+
+                <GoogleBtn
+                    userLogin = {this.userLoggedIn}
+                    handlelogout = {this.handleLogOut}
+                />
             
             </div>
         )

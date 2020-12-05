@@ -61,7 +61,7 @@ class Home extends Component {
         axios.post('http://localhost:5000/addNewJournal', new_journal_entry)
             .then(response => this.setState({ journalId: response.data._id }));
     
-        window.location.href=`/journal-entries`;
+        window.location.href=`/journal-entries/${this.state.userInfo}`;
     
         // window.location.href=`/journal-entries`;
     }
@@ -180,7 +180,7 @@ class Home extends Component {
                         <div className= "vibe" id= "defeated" onClick= {this.handleClick}> 😞 </div>
                         <div className= "vibe" id= "please" onClick= {this.handleClick}> 🥺 </div>
                     </div>
-                    <button className = "go" onClick = {() => this._clicked()}>
+                    <button className = "go" onClick = {this._clicked}>
                     Submit
                     </button>
                 </div>

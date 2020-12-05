@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import All from './All';
-import './Journal.css';
+import './OneJournal.css';
 import {withRouter} from "react-router";
 
 class OneJournal extends Component {
@@ -21,13 +21,12 @@ class OneJournal extends Component {
     render(){
         return(
             <div className = "journal-entry">
-                <p>{this.props.userid}</p>
-                <p> {this.props.date} </p>
-                <p> {this.props.vibe} </p>
-                <p> {this.props.artist} </p>
-                <p> {this.props.song} </p>
-                <p> {this.props.entry} </p>
-                <button onClick = {this._clicked} id = {this.props.userid}> See More </button>
+                <p> Vibes: {this.props.vibe} </p>
+                <p> Artist: {this.props.artist} </p>
+                <p> Song: {this.props.song} </p>
+                <p> Entry: {this.props.entry} </p>
+                <p id= "dateprop"> 📅 Date: {this.props.date} </p>
+                <button className="see-more" onClick = {this._clicked} id = {this.props.userid}> See More </button>
             
             </div>
         )

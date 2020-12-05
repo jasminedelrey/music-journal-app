@@ -38,3 +38,8 @@
     background-color: cadetblue;
 }
 
+input, select {
+    display: block;
+    box-sizing: border-box;
+}
+
