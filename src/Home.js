@@ -4,7 +4,6 @@ import {withRouter} from "react-router";
 import axios from 'axios';
 import DatePicker from 'react-date-picker';
 import GoogleBtn from './GoogleBtn';
-import GoogleBtn from './GoogleBtn'
 import { v4 as uuidv4 } from 'uuid';
 
 class Home extends Component {
@@ -185,11 +184,6 @@ class Home extends Component {
                     Submit
                     </button>
                 </div>
-                
-                <div className = "googlebutton">
-                    <GoogleBtn/>
-                </div>
-
 
                 <button className = "go" onClick = {() => this._clicked()}>
                     Submit

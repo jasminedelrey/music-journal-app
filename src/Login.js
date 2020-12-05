@@ -59,17 +59,21 @@ class Login extends Component {
     render(){
         return(
             <div className = "login">
-                <h1> WELCOME TO VIBECHECK // A JASMINE REYES AND ALI MIAN PRODUCTION</h1>
-
-
-                {this.state.loggedIn ? <div className="login-buttons"> <button onClick = {this.clickedJournals}> Go to your journals </button> <br/>
-                <button onClick = {this._clickedNewEntry}> Add a new entry </button>  </div>
                 
-                : <p> Please Log in</p>}
-
-                <GoogleBtn
-                    userLogin = {this.userLoggedIn}
-                />
+                <h1> Welcome to Vibecheck </h1>
+                
+                <div clasName = "login-prompt">
+                    {this.state.loggedIn ? <div className="login-buttons"> <button onClick = {this.clickedJournals}> Go to your journals </button> <br/>
+                    <button onClick = {this._clickedNewEntry}> Add a new entry </button>  </div>
+                
+                    : <p> Please Log in</p>}
+                
+                    <div className = "GoogleBtn">
+                        <GoogleBtn
+                        userLogin = {this.userLoggedIn}
+                        />
+                    </div>
+                </div>
             
             </div>
         )
