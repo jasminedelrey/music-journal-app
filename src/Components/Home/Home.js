@@ -116,6 +116,7 @@ class Home extends Component {
             })
         }
     
+        // window.location.href=`/journal-entries`;
     }
 
     handleClick(event) {
@@ -183,16 +184,16 @@ class Home extends Component {
                 <div className = "Header">
                     <h1>Vibecheck</h1>
                 </div>
-                <p> Changed your mind? View journals here. </p>
-                <button onClick= {this.goBack}> View Journals </button>
+                {/* <p> Changed your mind? View journals here. </p> */}
+                <button className="viewJournals" onClick= {this.goBack}> View Journals </button>
                 <p id="error-message"> {this.state.entered ? "" : "Please fill in all fields to form an entry"}</p>
                 <div className = "search-container">
-                    Song: <input type="text" ref={this.songRef}/>
-                    Artist: <input type="text" ref={this.artistRef}/>
-                    Entry: <textarea rows="4" cols="50" name="comment" form="usrform" ref={this.entryRef}/>
+                    <div className="songinput"><input type="text" className = "songBar" placeholder= "Song" ref={this.songRef}/></div>
+                    <div className= "artistinput"><input type="text" className = "artistBar" placeholder= "Artist" ref={this.artistRef}/></div>
+                    <div className="Entry"><textarea rows="4" cols="50" name="comment" form="usrform" className="entryBar" placeholder= "What's your vibe today?"ref={this.entryRef}/></div>
 
                    
-
+                <div className= "calendar">
                     <select id = "day" ref={this.dayRef} onChange = {this.handleOnChange}>
                     </select>
 
@@ -205,6 +206,8 @@ class Home extends Component {
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                     </select>
+                </div>
+                    
                     <p id="select-vibe-text"> Select a vibe: </p>
                     <div className = "vibes">
     
@@ -227,6 +230,10 @@ class Home extends Component {
                     </button>
                 </div>
 
+                {/* <button className = "go" onClick = {() => this._clicked()}>
+                    Submit
+                </button>
+ */}
             </div>
         );
     }

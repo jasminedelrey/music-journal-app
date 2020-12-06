@@ -1,46 +1,125 @@
 
-.vibes {
-    display: flex;
-}
-.Home .Header{
-    background-color: rgb(100, 100, 189);
-    padding:1%;
-
-}
-
-.Home .search-container{
-    background-color: rgb(240, 240, 240);
-    margin-top: 20px;
-    padding-bottom: 40px;
-    padding: 5%;
-    font-family: 'Manjari', sans-serif;
-    
-}
-
-.Home .googlebutton{
-    display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Manjari&family=Sonsie+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat:ital,wght@0,300;1,100&display=swap');
+  
+  body {
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #7b5eaa, #ff9900);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+  }
+  
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
 .Home .Header h1{
-    color: white;
+    font-family: 'Sonsie One', cursive;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    color: black;
+   
 }
 
-
-
-.vibes {
-    font-size: 50px;
-}
-
-.hidden {
-    display: none;
+.Home .search-container .songinput{
+    margin-top: 20px;
+    font-family: 'Manjari', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Architects Daughter', cursive;
     
 }
 
-.show {
-    background-color: cadetblue;
+.Home .search-container .songinput .songBar{
+    padding: 15px;
+    background-color: white;
+    border-radius: 16px 16px 16px 16px;
+    box-shadow: 0px 5px rgba(0, 0, 0 0.2);
+    font-size: 25px;
+    color:black;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.Home .search-container .artistinput{
+    margin-top: 20px;
+    font-family: 'Manjari', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Architects Daughter', cursive;
+    
+}
+
+.Home .search-container .artistinput .artistBar{
+    padding: 15px;
+    background-color: white;
+    border-radius: 16px 16px 16px 16px;
+    box-shadow: 0px 5px rgba(0, 0, 0 0.2);
+    font-size: 25px;
+    color:black;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.Home .search-container .Entry{
+    margin-top: 20px;
+    font-family: 'Manjari', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.Home .search-container .Entry .entryBar{
+    padding: 15px;
+    background-color: white(134, 133, 133);
+    border-radius: 16px 16px 16px 16px;
+    box-shadow: 0px 5px rgba(0, 0, 0 0.2);
+    font-size: 25px;
+    color:black;
+    font-family: 'Architects Daughter', cursive;
+    
+}
+
+.calendar{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.calendar #day {
+    font-family: 'Architects Daughter', cursive;
+    
+}
+
+.calendar #month {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.calendar #year {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.vibes{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-size: 50px;
+    justify-content: center;
 }
 
 input, select {
@@ -48,8 +127,81 @@ input, select {
     box-sizing: border-box;
 }
 
-.Home .search-container {
-    margin-left: auto;
-    margin-right:auto;
+.Home .viewJournals{
+    justify-content: center;
+    align-items: center;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family: 'Manjari', sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background-color: transparent;
+    font-size: xx-large;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
+.viewJournals:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+    cursor: pointer;
+}
+
+.search-container .go{
+
+    justify-content: center;
+    align-items: center;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    /* margin:0 0.3em 0.3em 0; */
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family: 'Manjari', sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background-color: transparent;
+    font-size: xx-large;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+.go:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+    cursor: pointer;
+}
+
+.search-container #select-vibe-text{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 30px;
+}
+
+.Home #error-message {
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 20px;
+
+}
