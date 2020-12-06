@@ -24,16 +24,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `Libraries Used for React App`
+## `Libraries Used for React App`
 
-## `npm install uuid`
-## `npm install react-router`
-## `npm install react-google-login`
-## `npm install axios`
+### `npm install uuid`
+### `npm install react-router`
+### `npm install react-google-login`
+### `npm install axios`
 
-### `Libraries Used for Server`
+## `Libraries Used for Server`
 
-## `npm install mongodb`
-## `npm install cors`
-## `npm install body-parser`
+### `npm install mongodb`
+### `npm install cors`
+### `npm install body-parser`
 
