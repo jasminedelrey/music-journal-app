@@ -3,6 +3,21 @@ import All from '../All/All';
 import './Journal.css';
 import {withRouter} from "react-router";
 
+const emotions = {
+    "happy" : "😁",
+    "okay" : "🙂",
+    "neutral" : "😐",
+    "sad" : "🙁",
+    "cool" : "😎",
+    "awkward" : "🙃",
+    "ecstatic" : "🤩",
+    "smirky" : "😏",
+    "unfortunate" : "😪",
+    "worried" : "😟",
+    "overwhelmed" : "😭",
+    "defeated" : "😞",
+    "please" : "🥺"
+}
 
 class Journal extends Component {
 
@@ -39,26 +54,34 @@ class Journal extends Component {
     }
 
     render(){
-        let entry, date, artist, song = ''
+        let entry, date, artist, song= ''
+        let vibe = []
         if(this.state.journal !== undefined) {
             entry = this.state.journal[0].entry
             date = this.state.journal[0].date
             artist = this.state.journal[0].artist
             song = this.state.journal[0].song
+            for(let i=0; i<(this.state.journal[0].vibe).length; i++){
+                vibe.push(emotions[(this.state.journal[0].vibe)[i]])
+            } 
+
 
         }
         else {
             console.log("not here")
         }
         return(
-            <div className = "journal-entry">
-
-                <button onClick = {this._clicked}> Back </button>
-
-                <p> {entry}</p>
-                <p> {date}</p>
-                <p> {artist}</p>
-                <p> {song}</p>
+            <div className = "selected-journal">
+                <div className= "go-back-from-one-journal">
+                <button className = "backbutton" onClick = {this._clicked}> Back </button>
+                </div> 
+                <div className = "journal-entry">
+                <p> Vibes: {vibe} </p> 
+                <p> Entry: {entry}</p>
+                <p> Artist: {artist}</p>
+                <p> Song: {song}</p>
+                <p id= "dateprop"> 🗓 Date: {date}</p>
+                </div>
 
             </div>
         )

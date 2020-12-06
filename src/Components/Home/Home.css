@@ -20,7 +20,7 @@
       }
   }
 .Home .Header h1{
-    font-family: 'Sonsie One', cursive;
+    font-family: 'Manjari', sans-serif;
     font-weight: bold;
     display: flex;
     flex-wrap: wrap;
@@ -32,12 +32,11 @@
 
 .Home .search-container .songinput{
     margin-top: 20px;
-    font-family: 'Manjari', sans-serif;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
     
 }
 
@@ -48,7 +47,7 @@
     box-shadow: 0px 5px rgba(0, 0, 0 0.2);
     font-size: 25px;
     color:black;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
 }
 
 .Home .search-container .artistinput{
@@ -58,7 +57,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
     
 }
 
@@ -69,7 +68,7 @@
     box-shadow: 0px 5px rgba(0, 0, 0 0.2);
     font-size: 25px;
     color:black;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
 }
 
 .Home .search-container .Entry{
@@ -79,7 +78,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
 }
 
 .Home .search-container .Entry .entryBar{
@@ -89,7 +88,7 @@
     box-shadow: 0px 5px rgba(0, 0, 0 0.2);
     font-size: 25px;
     color:black;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
     
 }
 
@@ -102,16 +101,16 @@
 }
 
 .calendar #day {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
     
 }
 
 .calendar #month {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
 }
 
 .calendar #year {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
 }
 
 .vibes{
@@ -161,7 +160,8 @@ input, select {
     align-items: center;
     padding:0.35em 1.2em;
     border:0.1em solid #FFFFFF;
-    /* margin:0 0.3em 0.3em 0; */
+    margin-left: auto;
+    margin-right:auto;
     border-radius:0.12em;
     box-sizing: border-box;
     text-decoration:none;
@@ -176,6 +176,7 @@ input, select {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    margin-top: 20px;
 
 }
 
@@ -191,7 +192,7 @@ input, select {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
     font-size: 30px;
 }
 
@@ -201,7 +202,12 @@ input, select {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Manjari', sans-serif;
     font-size: 20px;
 
+}
+
+.vibes .show{
+    border:0.1em solid white;
+    background-color: transparent;
 }

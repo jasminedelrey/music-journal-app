@@ -182,15 +182,14 @@ class Home extends Component {
         return(
             <div className = "Home">
                 <div className = "Header">
-                    <h1>Vibecheck</h1>
+                    <h1>Enter a new journal entry</h1>
                 </div>
-                {/* <p> Changed your mind? View journals here. </p> */}
                 <button className="viewJournals" onClick= {this.goBack}> View Journals </button>
                 <p id="error-message"> {this.state.entered ? "" : "Please fill in all fields to form an entry"}</p>
                 <div className = "search-container">
                     <div className="songinput"><input type="text" className = "songBar" placeholder= "Song" ref={this.songRef}/></div>
                     <div className= "artistinput"><input type="text" className = "artistBar" placeholder= "Artist" ref={this.artistRef}/></div>
-                    <div className="Entry"><textarea rows="4" cols="50" name="comment" form="usrform" className="entryBar" placeholder= "What's your vibe today?"ref={this.entryRef}/></div>
+                    <div className="Entry"><textarea rows="4" cols="50" name="comment" form="usrform" className="entryBar" placeholder= "How are you feeling today?"ref={this.entryRef}/></div>
 
                    
                 <div className= "calendar">
@@ -208,7 +207,7 @@ class Home extends Component {
                     </select>
                 </div>
                     
-                    <p id="select-vibe-text"> Select a vibe: </p>
+                    <p id="select-vibe-text"> What's your vibe: </p>
                     <div className = "vibes">
     
                         <div className= "vibe" id="happy" onClick= {this.handleClick}>😁</div>
@@ -229,11 +228,6 @@ class Home extends Component {
                     Submit
                     </button>
                 </div>
-
-                {/* <button className = "go" onClick = {() => this._clicked()}>
-                    Submit
-                </button>
- */}
             </div>
         );
     }

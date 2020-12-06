@@ -10,20 +10,27 @@ body {
 
 #go-back-vibes{
     float: left;
+    display:flex;
+    margin-top: 40px;
+    justify-content: left;
+    margin-left: 20px;
 }
 
 #go-back-button {
 
-    display:inline-block;
+    display:flex;
+    margin-top: 40px;
+    margin-left:10px;
+    justify-content: left;
     padding:0.35em 1.2em;
-    border:0.1em solid red;
+    border:0.1em solid white;
     margin:0 0.3em 0.3em 0;
     border-radius:0.12em;
     box-sizing: border-box;
     text-decoration:none;
     font-family: 'Manjari', sans-serif;
     font-weight:300;
-    color:green;
+    color:white;
     text-align:center;
     transition: all 0.2s;
     width: 100%;
@@ -34,7 +41,7 @@ body {
 #go-back-button:hover{
     cursor: pointer;
     color:#000000;
-    background-color: pink;
+    background-color: white;
 }
 
 
@@ -50,7 +57,21 @@ body {
 }
 
 .show {
-    background-color: cadetblue;
-    border-radius: 10px;
-    border: transparent;
+    border:0.1em solid white;
+    
+}
+
+h1{
+    justify-content: center;
+    display:flex;
+}
+h2{
+    justify-content: center;
+    display:flex;
+}
+
+#song-block {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

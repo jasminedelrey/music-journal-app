@@ -113,12 +113,17 @@ class Vibe extends Component {
                             console.log(Object.keys(vibeMatches))
                             
                             for(let i=0; i< Object.keys(vibeMatches).length; i++){
-                                
                                 if(Object.values(vibeMatches)[i] !== null){
-                                    q.push(Object.values(vibeMatches)[i])
-            
+                                for(let j=0; j<(Object.values(vibeMatches)[i]).length; j++){
+                                    if(q.indexOf(Object.values(vibeMatches)[i][j]) === -1) {
+                                        q.push(Object.values(vibeMatches)[i][j])
+                                    }
+                                    console.log(q[0])
                                 }
+            
                             }
+                            }
+
 
                         this.setState({
                             test : array,
@@ -138,8 +143,6 @@ class Vibe extends Component {
                     }
                 }
                 }
-                
-                
                 
                 else {
                     for(let i= 0; i < selected_vibes.length; i++) {
@@ -171,7 +174,12 @@ class Vibe extends Component {
                     
                     for(let i=0; i< Object.keys(vibeMatches).length; i++){
                         if(Object.values(vibeMatches)[i] !== null){
-                            q.push(Object.values(vibeMatches)[i])
+                        for(let j=0; j<(Object.values(vibeMatches)[i]).length; j++){
+                            if(q.indexOf(Object.values(vibeMatches)[i][j])=== -1) {
+                                q.push(Object.values(vibeMatches)[i][j])
+                            }
+                            console.log((Object.values(vibeMatches)[i])[0])
+                        }
                         }
                     }
 
@@ -182,7 +190,7 @@ class Vibe extends Component {
                     })
 
 
-                    console.log("STATE FOR Q ARRAY " + this.state.presentMatches)
+                    console.log(q)
 
                 }
 
@@ -194,7 +202,7 @@ class Vibe extends Component {
             document.getElementById("vibe-buttons").appendChild(button)
         }
 
-            console.log(p)
+            console.log(this.state.presentMatches)
             console.log("PRESENT MATCHES STATE" + Object.keys(this.state.presentMatches))
 
         })
@@ -209,32 +217,29 @@ class Vibe extends Component {
 
 
     render(){
-        let vibeComponent = ""
-        let final_array = [];
-        
-        vibeComponent = (this.state.presentMatches).map(e => {
-                return <OneVibe key= "key"
-                         match = {e}
+        console.log(this.state.presentMatches)
+        let vibeComponent = this.state.presentMatches.map(element => {
+            console.log("ELEMENT IS" + element)
+            return <OneVibe key= {element}
+                            match = {element}
+                                    />
+        })
 
-                />
             
-        }) 
+
 
         return (
 
-            <div className="vibes-page">
+        <div className="vibes-page">
             <div id= "go-back-vibes"> 
-            <button id= "go-back-button" onClick = {this.goBack}> Back </button>
+                <button id= "go-back-button" onClick = {this.goBack}> Back </button>
             </div>
             <h1> Your Vibes</h1>
             <h2> Form a vibe playlist based on your journal entries: </h2>
             <div id="vibe-buttons"> </div>
-            <p> {vibeComponent}</p>
-                <ul id="vibe-list">
+            <p id= "song-block"> {vibeComponent}</p>
 
-                </ul>
-
-            </div>
+        </div>
         )
         }
 

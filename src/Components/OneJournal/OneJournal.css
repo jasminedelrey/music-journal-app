@@ -14,7 +14,7 @@
 .see-more {
     background-color: transparent;
     display:inline-block;
-    border:0.1em solid blue;
+    border:0.1em solid gray;
     cursor: pointer;
 }
 
