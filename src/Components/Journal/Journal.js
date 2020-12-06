@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import All from './All';
+import All from '../All/All';
 import './Journal.css';
 import {withRouter} from "react-router";
 

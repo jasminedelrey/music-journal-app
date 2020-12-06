@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './All.css';
 import {withRouter} from "react-router";
-import Journal from './Journal'
-import OneJournal from './OneJournal'
+import Journal from '../Journal/Journal'
+import OneJournal from '../OneJournal/OneJournal'
 import { v4 as uuidv4 } from 'uuid';
 
 class All extends Component {
@@ -17,6 +17,7 @@ class All extends Component {
         this._clicked = this._clicked.bind(this);
         this.inputRef = React.createRef();
         this.clickedVibes = this.clickedVibes.bind(this);
+        this.goBack = this.goBack.bind(this);
     }
 
     componentDidMount(){
@@ -50,7 +51,7 @@ class All extends Component {
     }
 
     goBack() {
-        window.location.href = `/`;
+        window.location.href = `/home/${this.state.userInfo}`;
     }
 
 

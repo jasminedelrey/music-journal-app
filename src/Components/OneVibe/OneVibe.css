@@ -1,23 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Manjari&family=Sonsie+One&display=swap');
-.journal-entry {
+.listed-vibes{
     text-align: center;
     width: 500px;
     padding: 10px;
-    background-color: white;
-    margin: 7px;
+    background-color: yellowgreen;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 10px;
+    border: blue;
     font-family: 'Manjari', sans-serif;
-
+    display: flex;
+    justify-content: center;
     
-}
-
-.see-more {
-    background-color: transparent;
-    display:inline-block;
-    border:0.1em solid blue;
-    cursor: pointer;
-}
-
-#dateprop {
-    text-align: left;
 }

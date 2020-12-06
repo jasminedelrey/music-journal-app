@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './Home.css';
 import {withRouter} from "react-router";
 import axios from 'axios';
-import DatePicker from 'react-date-picker';
-import GoogleBtn from './GoogleBtn';
+import GoogleBtn from '../GoogleBtn/GoogleBtn'
 import { v4 as uuidv4 } from 'uuid';
 
 class Home extends Component {
@@ -27,7 +26,8 @@ class Home extends Component {
             date_selection : "",
             emoji_vibe: [],
             _id : "",
-            userInfo : ""
+            userInfo : "",
+            entered : false
         }
         this._clicked = this._clicked.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -42,7 +42,42 @@ class Home extends Component {
         })
 
         console.log("user info state is: " + this.state.userInfo)
+        
+
+        let ddropdown = document.getElementById('day');
+        let mdropdown = document.getElementById('month');
+        mdropdown.length = 0;
+        ddropdown.length = 0;
+
+        let defaultDay = document.createElement('option');
+        let defaultMonth = document.createElement('option');
+        defaultDay.text = "Day";
+        defaultMonth.text = "Month";
+        ddropdown.add(defaultDay);
+        mdropdown.add(defaultMonth);
+        ddropdown.selectedIndex = 0;
+        mdropdown.selectedIndex = 0;
+
+        for(let i = 1; i < 32; i++) {
+            let option = document.createElement('option')
+            option.text = i
+            option.value = i
+            option.id = i
+            ddropdown.add(option)
         }
+
+        for(let i = 1; i < 13; i++) {
+            let option = document.createElement('option')
+            option.text = i
+            option.value = i
+            option.id = i
+            mdropdown.add(option)
+        }
+    }
+
+    goBack() {
+        window.location.href = `/journal-entries/${this.state.userInfo}`
+    }
     
     
     _clicked(){
@@ -50,6 +85,16 @@ class Home extends Component {
         console.log(this.artistRef.current.value);
         console.log(this.songRef.current.value);
         console.log(this.state.userInfo)
+        if (this.state.day_selection !== "" &&
+        this.state.year_selection !== "" && 
+        this.state.month_selection !== "" && 
+        this.state.emoji_vibe !== "" && 
+        this.artistRef.current.value !== "" && 
+        this.songRef.current.value !== "" && 
+        this.entryRef.current.value !== "" ) {
+            this.setState({
+                entered : true
+            })
         const new_journal_entry = { _id: uuidv4(), 
                                     user_email: this.state.userInfo,
                                     date: this.state.month_selection + "-" + this.state.day_selection + "-" + this.state.year_selection,
@@ -62,6 +107,13 @@ class Home extends Component {
             .then(response => this.setState({ journalId: response.data._id }));
     
         window.location.href=`/journal-entries/${this.state.userInfo}`;
+        }
+
+        else {
+            this.setState({
+                entered : false
+            })
+        }
     
         // window.location.href=`/journal-entries`;
     }
@@ -131,6 +183,9 @@ class Home extends Component {
                 <div className = "Header">
                     <h1>Vibecheck</h1>
                 </div>
+                <p> Changed your mind? View journals here. </p>
+                <button onClick= {this.goBack}> View Journals </button>
+                <p id="error-message"> {this.state.entered ? "" : "Please fill in all fields to form an entry"}</p>
                 <div className = "search-container">
                     Song: <input type="text" ref={this.songRef}/>
                     Artist: <input type="text" ref={this.artistRef}/>
@@ -139,33 +194,20 @@ class Home extends Component {
                    
 
                     <select id = "day" ref={this.dayRef} onChange = {this.handleOnChange}>
-                        <option value="day-default">day</option>
-                        <option value="01">01</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
+                    </select>
 
-                    </select>
                     <select id= "month" ref={this.monthRef} onChange = {this.handleOnChange}>
-                        <option value="month-default">month</option>
-                        <option value="11">06</option>
-                        <option value="11">07</option>
-                        <option value="11">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
                     </select>
+
                     <select id= "year" ref={this.yearRef} onChange = {this.handleOnChange}>
-                        <option value="year-default">year</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
+                        <option value="year-default">Year</option>
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                     </select>
+                    <p id="select-vibe-text"> Select a vibe: </p>
                     <div className = "vibes">
+    
                         <div className= "vibe" id="happy" onClick= {this.handleClick}>😁</div>
                         <div className= "vibe" id = "okay" onClick= {this.handleClick}>🙂</div>
                         <div className= "vibe" id = "neutral" onClick= {this.handleClick}>😐</div>

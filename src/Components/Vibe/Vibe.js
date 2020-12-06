@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Vibe.css';
 import {withRouter} from "react-router";
-import OneVibe from './OneVibe'
+import OneVibe from '../OneVibe/OneVibe'
 
 const emotions = {
     "happy" : "😁",
@@ -89,6 +89,7 @@ class Vibe extends Component {
             let button = document.createElement('button')
             button.innerHTML = emotions[p[i]]
             button.id = p[i]
+            button.className = "vibe-buttons"
             button.onclick = (event => {
                 let selected_button = document.getElementById(event.target.id)
                 console.log(event.target.id)
@@ -115,6 +116,7 @@ class Vibe extends Component {
                                 
                                 if(Object.values(vibeMatches)[i] !== null){
                                     q.push(Object.values(vibeMatches)[i])
+            
                                 }
                             }
 
@@ -179,6 +181,7 @@ class Vibe extends Component {
                         presentMatches : q
                     })
 
+
                     console.log("STATE FOR Q ARRAY " + this.state.presentMatches)
 
                 }
@@ -188,7 +191,7 @@ class Vibe extends Component {
             // option.value = p[i]
             // option.id = p[i]
             // dropdown.add(option)
-            document.body.appendChild(button)
+            document.getElementById("vibe-buttons").appendChild(button)
         }
 
             console.log(p)
@@ -208,28 +211,28 @@ class Vibe extends Component {
     render(){
         let vibeComponent = ""
         let final_array = [];
-        if(this.state.presentMatches.length > 0) {
-
         
-        vibeComponent = this.state.presentMatches.map(e => {
-            if (final_array.indexOf(e) === -1) {
-                <OneVibe key= "key"
+        vibeComponent = (this.state.presentMatches).map(e => {
+                return <OneVibe key= "key"
                          match = {e}
 
                 />
-            }
+            
         }) 
-        }
 
         return (
 
-            <div>
-            <h1> Here are your vibes</h1>
+            <div className="vibes-page">
+            <div id= "go-back-vibes"> 
+            <button id= "go-back-button" onClick = {this.goBack}> Back </button>
+            </div>
+            <h1> Your Vibes</h1>
+            <h2> Form a vibe playlist based on your journal entries: </h2>
+            <div id="vibe-buttons"> </div>
             <p> {vibeComponent}</p>
-                <p> {this.state.test}</p>
-                <p> PRESENT MATCHES: {this.state.presentMatches}</p>
-                <p> this is mango {this.state.hehe}</p>
-                <button onClick = {this.goBack}> Back </button>
+                <ul id="vibe-list">
+
+                </ul>
 
             </div>
         )
