@@ -93,6 +93,9 @@ p{
     width: 100%;
     background-color: transparent;
     font-size: xx-large;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 
   }
 
@@ -110,6 +113,9 @@ p{
       font-size: 100px;
       font-family: 'Sonsie One', cursive;
       font-weight: bold;
+      display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
 
   #intro2 {
