@@ -32,6 +32,7 @@ class Home extends Component {
         this._clicked = this._clicked.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
+        this.goBack = this.goBack.bind(this);
         }
 
     componentDidMount(){
